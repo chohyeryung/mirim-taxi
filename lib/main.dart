@@ -31,7 +31,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:AppBar(
-        title: Text('복잡한 UI'),
+        backgroundColor: Colors.white,
+        title: Text('복잡한 UI', style : TextStyle(color:Colors.black),),
+          centerTitle:true,
       ),
       body: Center(
         child:Text(
@@ -39,6 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
           style: TextStyle(fontSize: 40),
         ),
       ),
+
       bottomNavigationBar: BottomNavigationBar(
         onTap:(index){
           setState((){
