@@ -1,4 +1,11 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+
+final dummyItems=[
+  'https://post-phinf.pstatic.net/MjAyMDA1MjdfMjM3/MDAxNTkwNTYxNzI1MTYy.CkJ0ERBE85NvzYqZbPf0DHbZ83BMbiooYOD5Q5Q8XVsg.pPKOEkFtIZkLZO-nylUjjdfgWDVOFdBV6GaV7qK5cFMg.JPEG/%ED%83%9D%EC%8B%9C%ED%88%AC%EC%96%B42.jpg?type=w1200',
+  'https://blogfiles.pstatic.net/MjAyMDA1MjBfMzAw/MDAxNTg5OTM3NzkwNDM4.0oPJmVHybrpopP_uB0bqvFW4cWV9spX8s2RZ6nQ0cswg.V4G9-b3ZA72wwUZs5VSeslo7AZHiblcNMs18GABoK7gg.JPEG.myrealtrip/2.jpg?type=w1',
+  'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxODAyMTFfMjE0%2FMDAxNTE4MzI5MzAxODE1.C48ciDbtu71TPhf5njF5G1bUTmPSaRGKO7lYI1WJZM4g.UOmsBuyCTa606Farc74bUxa3eTWmtzejgjma2U6zVn0g.JPEG.phsphs82%2F%25C0%25CE%25C3%25B5%25B0%25F8%25C7%25D7%25C5%25C3%25BD%25C3%25BA%25A3%25BD%25BA%25C6%25AE%25C5%25C3%25BD%25C3_%25282%2529.jpg&type=b400',
+];
 
 void main() {
   runApp(MyApp());
@@ -77,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
 class Page1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return ListView(
       children: <Widget>[
         _buildTop(),
         _buildMiddle(),
@@ -190,11 +197,33 @@ class Page1 extends StatelessWidget {
   }
 
   Widget _buildMiddle() {
-    return Text('Middle');
+    return CarouselSlider(
+      options: CarouselOptions(
+        height:200,
+        autoPlay:true,
+      ),
+      items: dummyItems.map((url) {
+        return Builder(
+          builder: (BuildContext context) {
+            return Container(
+                width: MediaQuery.of(context).size.width,
+                margin: EdgeInsets.symmetric(horizontal: 5.0),
+                child: ClipRRect(
+                  borderRadius:BorderRadius.circular(8.0),
+                  child:Image.network(
+                    url,
+                    fit:BoxFit.cover,
+                  )
+                ),
+            );
+          },
+        );
+      }).toList(),
+    );
   }
 
   Widget _buildBottom() {
-    return Text('Bottom');
+
   }
 }
 class Page2 extends StatelessWidget {
